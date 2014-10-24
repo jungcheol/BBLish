@@ -8,44 +8,32 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/twoBLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:src="@drawable/twoblogo" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="로그인 해주세요" />
-
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/loginId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="id" >
+            android:background="@drawable/edittext_border" >
 
             <requestFocus />
         </EditText>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/loginPwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="password" />
-
-        <View
-            android:id="@+id/view1"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:background="#19000000" />
+            android:background="@drawable/edittext_border" />
 
     </LinearLayout>
 

@@ -15,8 +15,8 @@ public class BBLishMainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_bblish_main);
 		
-		Intent TabsIntent = new Intent().setClass(this, TabsActivity.class);
-		startActivity(TabsIntent);
+//		Intent TabsIntent = new Intent().setClass(this, TabsActivity.class);
+//		startActivity(TabsIntent);
 	}
 	
 }
