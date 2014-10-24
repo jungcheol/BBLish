@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BBLish</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_tabs">TabsActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_favorite">FavoriteActivity</string>
+    <string name="title_activity_set">SetActivity</string>
+    
+
+</resources>
