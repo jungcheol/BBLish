@@ -20,7 +20,7 @@ public class HomeActivity extends Activity {
 //		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
 		
-		Log.d("", "[bbEngLog] HomeActivity-onCreate : 1111");
+		Log.d("", "[BBLishMainActivity] HomeActivity-onCreate : 1111");
 		
 		webView = (WebView)findViewById(R.id.bbengWeb);
 		webView.setWebViewClient(new WebViewClient());
@@ -28,8 +28,8 @@ public class HomeActivity extends Activity {
 		set.setJavaScriptEnabled(true);
 //		set.setBuiltInZoomControls(true);
 
-		webView.loadUrl("http://hirumiran.cafe24.com/web/");
-//		webView.loadUrl("http://172.30.95.84:8080/testWeb/setCK.jsp");
+//		webView.loadUrl("http://hirumiran.cafe24.com/web/");
+		webView.loadUrl("http://172.30.95.84:8080/testWeb/getCK.jsp");
 	}
 	
 }
