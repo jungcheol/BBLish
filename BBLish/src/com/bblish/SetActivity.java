@@ -19,13 +19,18 @@ import android.widget.ImageView;
 
 public class SetActivity extends Activity {
 	
-	CookieSyncManager.createInstance(context);
-	CookieManager cookieManager = CookieManager.getInstance();
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_set);
+		
+		CookieSyncManager.createInstance(this);
+		CookieManager cookieManager = CookieManager.getInstance();
+		CookieSyncManager.getInstance().startSync();
+		cookieManager.setCookie("http://172.30.95.84:8080", "jjjj=kkkk; Path=/");
 		
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
@@ -67,7 +72,7 @@ public class SetActivity extends Activity {
 					}
 					
 					Log.d("", "[BBLishMainActivity] Data : " + resultStr);
-					
+					/*
 					List<String> cookies = con.getHeaderFields().get("set-cookie");
 					 
 					if (cookies != null) {
@@ -75,13 +80,15 @@ public class SetActivity extends Activity {
 					        Log.d("", "[BBLishMainActivity] cookie : " + cookie.split(";\\s*")[0]);
 					    }
 					}
+					*/
 					
-					/*
 					String cookies = con.getHeaderField("Set-Cookie");
 					if (cookies != null) {
 						Log.d("", "[BBLishMainActivity] cookies : " + cookies);
 					}
-					*/
+					
+					
+					
 //		            conn.setRequestMethod("POST");
 		            
 //		            String body = "abcde=aaaa";
@@ -132,7 +139,7 @@ public class SetActivity extends Activity {
 					}
 				}
 								
-				CookieManager cm = CookieManager.getInstance();
+				
 				
 				
 				Log.d("", "[BBLishMainActivity] submit--");

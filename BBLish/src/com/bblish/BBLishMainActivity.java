@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
 
 public class BBLishMainActivity extends Activity {
@@ -38,6 +39,8 @@ public class BBLishMainActivity extends Activity {
 		
 		Intent TabsIntent = new Intent().setClass(this, TabsActivity.class);
 		startActivity(TabsIntent);
+		
+		
 		
 //		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //		StrictMode.setThreadPolicy(policy);
