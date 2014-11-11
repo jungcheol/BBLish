@@ -19,8 +19,6 @@ import android.widget.ImageView;
 
 public class SetActivity extends Activity {
 	
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +26,9 @@ public class SetActivity extends Activity {
 		setContentView(R.layout.activity_set);
 		
 		CookieSyncManager.createInstance(this);
-		CookieManager cookieManager = CookieManager.getInstance();
+		final CookieManager cookieManager = CookieManager.getInstance();
 		CookieSyncManager.getInstance().startSync();
-		cookieManager.setCookie("http://172.30.95.84:8080", "jjjj=kkkk; Path=/");
+//		cookieManager.setCookie("http://hirumiran.cafe24.com", "PHPSESSID=33n1miu2k39tfv31c4tevptlv5; path=/");
 		
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
@@ -48,12 +46,14 @@ public class SetActivity extends Activity {
 				
 //				String sResult = "Error";
 				
-				String path = "http://172.30.95.84:8080/testWeb/setCK.jsp";
+//				String path = "http://172.30.95.84:8080/testWeb/setCK.jsp?id=zzzz";
+//				String path = "http://hirumiran.cafe24.com/web/";
+				String path = "http://www.wemakeprice.com";
 				URL url =  null;
 				HttpURLConnection con = null;
 				BufferedReader in = null;
 				String resultStr = "";
-				
+				String cookies = "";
 				
 				try {
 					url = new URL(path);
@@ -63,7 +63,7 @@ public class SetActivity extends Activity {
 					con = (HttpURLConnection)url.openConnection();
 					
 					in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-					
+					/*
 					String str;
 					
 					while ((str = in.readLine()) != null) {
@@ -72,21 +72,25 @@ public class SetActivity extends Activity {
 					}
 					
 					Log.d("", "[BBLishMainActivity] Data : " + resultStr);
-					/*
-					List<String> cookies = con.getHeaderFields().get("set-cookie");
-					 
-					if (cookies != null) {
-					    for (String cookie : cookies) {
-					        Log.d("", "[BBLishMainActivity] cookie : " + cookie.split(";\\s*")[0]);
-					    }
-					}
 					*/
 					
-					String cookies = con.getHeaderField("Set-Cookie");
-					if (cookies != null) {
-						Log.d("", "[BBLishMainActivity] cookies : " + cookies);
+					
+					List<String> cookies2 = con.getHeaderFields().get("set-cookie");
+					 
+					if (cookies2 != null) {
+					    for (String cookie : cookies2) {
+					        Log.d("", "[BBLishMainActivity] cookie2 : " + cookie.split(";\\s*")[0]);
+					    }
 					}
 					
+					
+					cookies = con.getHeaderField("Set-Cookie");
+
+					if (cookies != null) {
+						Log.d("", "[BBLishMainActivity] cookies : " + cookies);
+//						cookieManager.setCookie("http://hirumiran.cafe24.com", cookies);
+						cookieManager.setCookie("http://172.30.95.84:8080", "fb_autologin=1; path=/");
+					}
 					
 					
 //		            conn.setRequestMethod("POST");
@@ -140,7 +144,7 @@ public class SetActivity extends Activity {
 				}
 								
 				
-				
+
 				
 				Log.d("", "[BBLishMainActivity] submit--");
 				
