@@ -8,8 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TabsActivity" 
+            android:name=".TabsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_tabs" >
         </activity>
@@ -47,7 +47,14 @@
             android:name=".SetActivity"
             android:label="@string/title_activity_set" >
         </activity>
-        
+        <activity
+            android:name=".IntroActivity"
+            android:label="@string/title_activity_intro" >
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
     </application>
 
 </manifest>

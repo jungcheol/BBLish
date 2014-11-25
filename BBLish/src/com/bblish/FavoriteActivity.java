@@ -46,7 +46,7 @@ public class FavoriteActivity extends Activity {
 		info.setWhisky(4);
 		info.setEtc(5);
 		
-		int result = db.insert(info);
+//		int result = db.insert(info);
 		
 		preview = (ImageView)findViewById(R.id.preview);
 		
