@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class LoginActivity extends Activity {
@@ -40,13 +42,16 @@ public class LoginActivity extends Activity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
 		
-		ImageView submit = (ImageView)findViewById(R.id.twoBLogo);
-		submit.setOnClickListener(new View.OnClickListener() {
+		Button submitBtn = (Button)findViewById(R.id.loginBtn);
+		submitBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.d("", "[BBLishMainActivity] --submit");
+				
+				EditText loginId = (EditText)findViewById(R.id.loginId);
+				EditText loginPwd = (EditText)findViewById(R.id.loginPwd);
 				
 //				String strCookie = CookieManager.getInstance().getCookie("http://localhost:8080/testWeb/setCK.jsp");
 //				Log.d("", "strCookie : " + strCookie);
@@ -229,6 +234,16 @@ public class LoginActivity extends Activity {
 
 				
 				Log.d("", "[BBLishMainActivity] submit--");
+			}
+		});
+		
+		ImageView submit = (ImageView)findViewById(R.id.twoBLogo);
+		submit.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
 				
 				
 			}
