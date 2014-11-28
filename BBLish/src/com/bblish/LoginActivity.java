@@ -6,7 +6,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.R.integer;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.webkit.CookieSyncManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
@@ -25,6 +30,8 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		
 		
 		CookieSyncManager.createInstance(this);
 		final CookieManager cookieManager = CookieManager.getInstance();
@@ -41,9 +48,11 @@ public class LoginActivity extends Activity {
 		
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-		
+
 		Button submitBtn = (Button)findViewById(R.id.loginBtn);
 		submitBtn.setOnClickListener(new View.OnClickListener() {
+			
+			Dialog dialog = null;
 			
 			@Override
 			public void onClick(View v) {
@@ -52,6 +61,19 @@ public class LoginActivity extends Activity {
 				
 				EditText loginId = (EditText)findViewById(R.id.loginId);
 				EditText loginPwd = (EditText)findViewById(R.id.loginPwd);
+				
+//				Log.d("", "[BBLishMainActivity] loginId.toString() : " + loginId.getText().toString());
+//				Log.d("", "[BBLishMainActivity] loginId.toString().length() : " + loginId.getText().toString().length());
+				
+				if (loginId.getText().toString().length() == 0) {
+					dialog = process(1);
+					dialog.show();
+				}
+				
+				if (loginPwd.getText().toString().length() == 0) {
+					dialog = process(2);
+					dialog.show();
+				}
 				
 //				String strCookie = CookieManager.getInstance().getCookie("http://localhost:8080/testWeb/setCK.jsp");
 //				Log.d("", "strCookie : " + strCookie);
@@ -249,5 +271,32 @@ public class LoginActivity extends Activity {
 			}
 
 		});
+	}
+	
+	public Dialog process(int id) {
+		String msg = "";
+		
+		if (id == 1) {
+			msg = "id!";
+		} else if (id == 2) {
+			msg = "pwd!";
+		}
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(msg)
+		.setTitle(R.string.app_name)
+		.setCancelable(false)
+		.setPositiveButton(R.string.cStr, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+				dialog.cancel();
+			}
+		});
+		
+		return builder.create();
+		
 	}
 }
