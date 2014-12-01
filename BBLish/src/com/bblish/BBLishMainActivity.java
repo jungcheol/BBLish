@@ -37,8 +37,8 @@ public class BBLishMainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_bblish_main);
 		
-		Intent IntroIntent = new Intent().setClass(this, IntroActivity.class);
-		startActivity(IntroIntent);
+//		Intent IntroIntent = new Intent().setClass(this, IntroActivity.class);
+//		startActivity(IntroIntent);
 		
 		Intent LoginIntent = new Intent().setClass(this, LoginActivity.class);
 		startActivity(LoginIntent);		

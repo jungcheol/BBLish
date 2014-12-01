@@ -31,12 +31,12 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		
-		
 		CookieSyncManager.createInstance(this);
 		final CookieManager cookieManager = CookieManager.getInstance();
 		CookieSyncManager.getInstance().startSync();
 		
+//		cookieManager.setCookie("http://hirumiran.cafe24.com", "wordpress_logged_in_3c4038bb61779c66da49063858848587=laweon|1417577322|40c8f82de519e8f7af7011263672dc2c; path=/web/; httponly");
+//		cookieManager.setCookie("http://hirumiran.cafe24.com", "wordpresspass_3c4038bb61779c66da49063858848587=+; expires=Sun, 01-Dec-2013 03:12:08 GMT; path=/web/");
 		/*
 		cookieManager.setCookie("http://hirumiran.cafe24.com", "PHPSESSID=r0s96277qc1vugnd2p6dvup0t4; path=/; domain=hirumiran.cafe24.com");
 		cookieManager.setCookie("http://hirumiran.cafe24.com", "wordpress_3c4038bb61779c66da49063858848587=laweon|1416473164|d5d4f1edcc2ca9073337640f40703288; path=/web/wp-admin; domain=hirumiran.cafe24.com; HttpOnly");
@@ -65,13 +65,18 @@ public class LoginActivity extends Activity {
 //				Log.d("", "[BBLishMainActivity] loginId.toString() : " + loginId.getText().toString());
 //				Log.d("", "[BBLishMainActivity] loginId.toString().length() : " + loginId.getText().toString().length());
 				
-				if (loginId.getText().toString().length() == 0) {
-					dialog = process(1);
+				String idCheck = "";
+				if (loginId.getText().toString().trim().length() == 0) {
+					idCheck = getResources().getString(R.string.id_check);
+					dialog = process(idCheck);
 					dialog.show();
+					
 				}
 				
-				if (loginPwd.getText().toString().length() == 0) {
-					dialog = process(2);
+				String pwdCheck = "";
+				if (loginPwd.getText().toString().trim().length() == 0) {
+					pwdCheck = getResources().getString(R.string.pwd_check);
+					dialog = process(pwdCheck);
 					dialog.show();
 				}
 				
@@ -102,14 +107,14 @@ public class LoginActivity extends Activity {
 					con.setDoOutput(true);
 					con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 					OutputStream os = con.getOutputStream();
-					os.write(body.getBytes("EUC-KR"));
+					os.write(body.getBytes("UTF-8"));
 					os.flush();
 					os.close();
-					
+					/*
 					in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 					
 					String str;
-				/*
+			
 					while ((str = in.readLine()) != null) {
 						resultStr += str;
 						
@@ -131,10 +136,12 @@ public class LoginActivity extends Activity {
 					Log.d("", "[BBLishMainActivity] ck : " + ck);
 					if (ck != null) {
 
-					    	cookieManager.setCookie("http://hirumiran.cafe24.com/web/", ck);
+//					    	cookieManager.setCookie("http://hirumiran.cafe24.com/", ck);
 
 					}
 					
+					String ck2 = ck.replace("%7C", "|");
+					Log.d("", "[BBLishMainActivity] ck2 : " + ck2);
 					
 					/*
 					String headerName = "";
@@ -259,29 +266,9 @@ public class LoginActivity extends Activity {
 			}
 		});
 		
-		ImageView submit = (ImageView)findViewById(R.id.twoBLogo);
-		submit.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				
-				
-			}
-
-		});
 	}
 	
-	public Dialog process(int id) {
-		String msg = "";
-		
-		if (id == 1) {
-			msg = "id!";
-		} else if (id == 2) {
-			msg = "pwd!";
-		}
-		
+	public Dialog process(String msg) {		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(msg)
 		.setTitle(R.string.app_name)
