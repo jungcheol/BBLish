@@ -13,6 +13,7 @@
     
     <string name="id_check">id!</string>
     <string name="pwd_check">pwd!</string>
+    <string name="id_pwd_check">id!pwd!</string>
     <string name="cStr">Close</string>
 
 </resources>
