@@ -102,29 +102,7 @@ public class LoginActivity extends Activity {
 					os.write(body.getBytes("UTF-8"));
 					os.flush();
 					os.close();
-					
-					/*
-					in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-					
-					String str;
-			
-					while ((str = in.readLine()) != null) {
-						resultStr += str;
-						
-					}
-					
-					Log.d("", "[BBLishMainActivity] Data : " + resultStr);
-					*/
-					/*
-					Map<String, List<String>> map1 = con.getHeaderFields();
-					Set<String> set1 = map1.keySet();
-					Iterator<String> iters = set1.iterator();
-					while (iters.hasNext()) {
-						String key = iters.next();
-						Log.d("", "[BBLishMainActivity] con.getHeaderField(" + key + ") : " + con.getHeaderField(key));
-					}
-					*/
-					
+									
 					String ck = con.getHeaderField("Set-Cookie");
 					Log.d("", "[BBLishMainActivity] ck : " + ck);
 						
@@ -138,24 +116,21 @@ public class LoginActivity extends Activity {
 					} else {
 						cookieManager.setCookie("http://hirumiran.cafe24.com/", ck);
 						
-						startIntent();
+						startTabsIntent();
 					}
 					
-				
-
-//					in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+/*
+					in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 					
-//					String str;
-				/*
+					String str;
+
 					while ((str = in.readLine()) != null) {
 						resultStr += str;
 						
 					}
 					
 					Log.d("", "[BBLishMainActivity] Data : " + resultStr);
-					*/
-					
-					/*
+
 					List<String> cookies2 = con.getHeaderFields().get("Set-Cookie");
 					
 					String aaaa = con.getHeaderField("Set-Cookie");
@@ -163,11 +138,10 @@ public class LoginActivity extends Activity {
 					if (cookies2 != null) {
 					    for (String cookie : cookies2) {
 					        Log.d("", "[BBLishMainActivity] cookie2 : " + cookie.split(";\\s*")[0]);
-//					    	Log.d("", "[BBLishMainActivity] cookie2 : " + cookie);
+					    	Log.d("", "[BBLishMainActivity] cookie2 : " + cookie);
 					    }
 					}
-					*/
-					/*
+
 					List<String> cookies2 = con.getHeaderFields().get("Set-Cookie");
 					String cookieValue = null;
 					
@@ -180,9 +154,8 @@ public class LoginActivity extends Activity {
 						}
 						
 					}
-				*/
+*/
 
-					
 				} catch (Exception e) {
 					// TODO: handle exception
 					
@@ -201,11 +174,10 @@ public class LoginActivity extends Activity {
 				Log.d("", "[BBLishMainActivity] submit--");
 			}
 		});
-		
-
+	
 	}
 	
-	public void startIntent() {
+	public void startTabsIntent() {
 		Intent TabsIntent = new Intent().setClass(this, TabsActivity.class);
 		startActivity(TabsIntent);
 	}
