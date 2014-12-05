@@ -30,11 +30,16 @@ public class IntroActivity extends Activity {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				startLoginIntent();
+				startTabsIntent();
 				
 				finish();
 			}
-		}, 5000);
+		}, 2000);
+	}
+	
+	public void startTabsIntent() {
+		Intent TabsIntent = new Intent().setClass(this, TabsActivity.class);
+		startActivity(TabsIntent);
 	}
 	
 	public void startLoginIntent() {

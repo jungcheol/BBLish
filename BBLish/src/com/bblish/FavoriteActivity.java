@@ -71,6 +71,8 @@ public class FavoriteActivity extends Activity {
 				// TODO Auto-generated method stub			
 //				captureAction();
 				
+				
+				
 				Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 				
 				fileUri = getOutputMediaFileUri();
