@@ -24,11 +24,15 @@ import android.provider.MediaStore.Images;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class SearchActivity extends Activity {
 	WebView webView;
@@ -48,15 +52,27 @@ public class SearchActivity extends Activity {
 		
 		Log.d("", "[BBLishMainActivity] SearchActivity-onCreate : 1111");
 		
-		String[] img = {MediaStore.Images.Thumbnails._ID};
-		ic = managedQuery(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, img, null, null, MediaStore.Images.Thumbnails.IMAGE_ID + "");
-		String[] pq = {MediaStore.Images.Media.DATA};
-		ric = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, pq, null, null, null);
-		int count = ic.getCount();
-		if (count > 0) {
-			selectImage = (ImageView)findViewById(R.id.selectImage);
-			
-		}
+		GridView gridview = (GridView) findViewById(R.id.gridView1);
+	    gridview.setAdapter(new ImageAdapter(this));
+	    
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, 
+	              View v, int position, long id) {
+	            
+	        	Toast.makeText(SearchActivity.this, 
+	        		position + "", Toast.LENGTH_SHORT).show();
+	        }
+	    });
+		
+//		String[] img = {MediaStore.Images.Thumbnails._ID};
+//		ic = managedQuery(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, img, null, null, MediaStore.Images.Thumbnails.IMAGE_ID + "");
+//		String[] pq = {MediaStore.Images.Media.DATA};
+//		ric = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, pq, null, null, null);
+//		int count = ic.getCount();
+//		if (count > 0) {
+//			selectImage = (ImageView)findViewById(R.id.selectImage);
+//			
+//		}
 
 		
 //		String[] proj = {
