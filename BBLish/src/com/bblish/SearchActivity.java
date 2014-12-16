@@ -66,6 +66,8 @@ public class SearchActivity extends Activity {
 		
 		Log.d("", "[BBLishMainActivity] SearchActivity-onCreate : 2222");
 		
+		Log.d("", "[BBLishMainActivity] SearchActivity-onCreate : 3333");
+		
 //		String[] img = {MediaStore.Images.Thumbnails._ID};
 //		ic = managedQuery(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, img, null, null, MediaStore.Images.Thumbnails.IMAGE_ID + "");
 //		String[] pq = {MediaStore.Images.Media.DATA};
