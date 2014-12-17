@@ -152,12 +152,12 @@ public class SearchActivity extends Activity {
 		private String imgData;
 		private String geoData;
 		private ArrayList<String> thumbsDataList;
-		private ArrayList<String> thumbsIDList;
+		private ArrayList<Long> thumbsIDList;
 		
 		IImageAdapter(Context c){
 			mContext = c;
 			thumbsDataList = new ArrayList<String>();
-			thumbsIDList = new ArrayList<String>();
+			thumbsIDList = new ArrayList<Long>();
 			getThumbInfo(thumbsIDList, thumbsDataList);
 		}
 		
@@ -183,34 +183,39 @@ public class SearchActivity extends Activity {
 			ImageView imageView;
 			if (convertView == null){
 				imageView = new ImageView(mContext);
-				imageView.setLayoutParams(new GridView.LayoutParams(95, 95));
+//				imageView.setLayoutParams(new GridView.LayoutParams(95, 95));
+				imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
 				imageView.setAdjustViewBounds(false);
 				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 				imageView.setPadding(2, 2, 2, 2);
 			}else{
 				imageView = (ImageView) convertView;
 			}
-			BitmapFactory.Options bo = new BitmapFactory.Options();
-			bo.inSampleSize = 8;
-			Bitmap bmp = BitmapFactory.decodeFile(thumbsDataList.get(position), bo);
-			Bitmap resized = Bitmap.createScaledBitmap(bmp, 95, 95, true);
-			imageView.setImageBitmap(resized);
+//			BitmapFactory.Options bo = new BitmapFactory.Options();
+//			bo.inSampleSize = 8;
+//			
+//			Bitmap bmp = BitmapFactory.decodeFile(thumbsDataList.get(position), bo);
+//			
+//			Bitmap resized = Bitmap.createScaledBitmap(bmp, 95, 95, true);
+//			imageView.setImageBitmap(resized);
+			
+			Bitmap bmp = MediaStore.Images.Thumbnails.getThumbnail(getContentResolver(), thumbsIDList.get(position), MediaStore.Images.Thumbnails.MICRO_KIND, null);
+			imageView.setImageBitmap(bmp);
 			
 			return imageView;
 		}
 		
-		private void getThumbInfo(ArrayList<String> thumbsIDs, ArrayList<String> thumbsDatas){
+		private void getThumbInfo(ArrayList<Long> thumbsIDs, ArrayList<String> thumbsDatas){
 			String[] proj = {MediaStore.Images.Media._ID,
 							 MediaStore.Images.Media.DATA,
 							 MediaStore.Images.Media.DISPLAY_NAME,
 							 MediaStore.Images.Media.SIZE};
 			
-			Cursor imageCursor = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-					proj, null, null, null);
+			Cursor imageCursor = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, MediaStore.Images.Media.DISPLAY_NAME + " like '2014121712%'", null, null);
 			
 			if (imageCursor != null && imageCursor.moveToFirst()){
 				String title;
-				String thumbsID;
+				long thumbsID;
 				String thumbsImageID;
 				String thumbsData;
 				String data;
@@ -222,12 +227,17 @@ public class SearchActivity extends Activity {
 				int thumbsSizeCol = imageCursor.getColumnIndex(MediaStore.Images.Media.SIZE);
 				int num = 0;
 				do {
-					thumbsID = imageCursor.getString(thumbsIDCol);
+//					thumbsID = imageCursor.getString(thumbsIDCol);
+					thumbsID = imageCursor.getLong(thumbsIDCol);
 					thumbsData = imageCursor.getString(thumbsDataCol);
 					thumbsImageID = imageCursor.getString(thumbsImageIDCol);
 					imgSize = imageCursor.getString(thumbsSizeCol);
 					num++;
 					if (thumbsImageID != null){
+						Log.d("", "[BBLishMainActivity] thumbsID : " + thumbsID);
+						Log.d("", "[BBLishMainActivity] thumbsData : " + thumbsData);
+						Log.d("", "[BBLishMainActivity] thumbsImageID : " + thumbsImageID);
+						Log.d("", "[BBLishMainActivity] imgSize : " + imgSize);
 						thumbsIDs.add(thumbsID);
 						thumbsDatas.add(thumbsData);
 					}
