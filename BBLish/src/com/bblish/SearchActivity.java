@@ -72,7 +72,8 @@ public class SearchActivity extends Activity {
 //	    });
 		
         GridView gv = (GridView)findViewById(R.id.gridView1);
-        final IImageAdapter ia = new IImageAdapter(this);
+//        final IImageAdapter ia = new IImageAdapter(this);
+        final ImageAdapter ia = new ImageAdapter(this);
         gv.setAdapter(ia);
 
 		
