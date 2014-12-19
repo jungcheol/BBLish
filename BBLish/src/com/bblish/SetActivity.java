@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Set;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -21,6 +23,7 @@ import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
+import android.provider.ContactsContract.Contacts;
 
 public class SetActivity extends Activity {
 	
@@ -30,5 +33,18 @@ public class SetActivity extends Activity {
 		setContentView(R.layout.activity_set);
 		
 
+	}
+	
+	
+	
+	private Cursor getContractCursor() {
+		String[] proj = new String[] {
+			Contacts._ID, 
+			Contacts.PHOTO_ID, 
+			Contacts.DISPLAY_NAME, 
+			Contacts.HAS_PHONE_NUMBER
+		};
+		
+		return managedQuery(Contacts.CONTENT_URI, proj, null, null, null);
 	}
 }
