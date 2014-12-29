@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.CookieHandler;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,16 +24,30 @@ import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.provider.ContactsContract.Contacts;
 
+import com.bblish.info;
+
 public class SetActivity extends Activity {
+	
+	ListView lv = null;
+	ArrayList<info> al = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_set);
 		
+		setLayout();
+		
+		al = new ArrayList<info>();
+		
+		for (int i = 0; i < 10; i++) {
+			al.add(new info(i + " lv", getResources().getDrawable(R.drawable.ic_launcher)));
+		}
 
+		lv.setAdapter(new CAA(this, R.layout.lv_row, al));
 	}
 	
 	
@@ -46,5 +61,9 @@ public class SetActivity extends Activity {
 		};
 		
 		return managedQuery(Contacts.CONTENT_URI, proj, null, null, null);
+	}
+	
+	public void setLayout() {
+		lv = (ListView)findViewById(R.id.lv);
 	}
 }
