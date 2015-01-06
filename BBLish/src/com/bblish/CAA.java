@@ -47,9 +47,9 @@ public class CAA extends ArrayAdapter<info> {
 		
 		if (v == null) {
 			vh =  new ViewHolder();
-			v = inflater.inflate(R.layout.lv_row, null);
-			vh.tv = (TextView)v.findViewById(R.id.tv);
-			vh.iv = (ImageView)v.findViewById(R.id.iv);
+			v = inflater.inflate(R.layout.listview_item, null);
+			vh.tv = (TextView)v.findViewById(R.id.mText);
+//			vh.iv = (ImageView)v.findViewById(R.id.iv);
 			
 			v.setTag(vh);
 		} else {

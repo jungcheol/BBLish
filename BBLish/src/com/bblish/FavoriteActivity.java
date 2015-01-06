@@ -7,6 +7,10 @@ import java.util.Date;
 import com.bblish.DatabaseHelper;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,20 +22,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class FavoriteActivity extends Activity {
 	
+	private static final int MESSAGE_ID = 1;
+	private NotificationManager nm;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST = 100;
 	Uri fileUri;
 	Bitmap bitmap;
 	ImageView preview;
 	DatabaseHelper db;
+	Button notiBtn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_favorite);
+		
+		nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 		
 		db = new DatabaseHelper(this);
 		
@@ -79,6 +90,17 @@ public class FavoriteActivity extends Activity {
 				intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);	
 			
 				startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST);
+			}
+		});
+		
+		notiBtn = (Button)findViewById(R.id.noti);
+		notiBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			
+				onNoti();
 			}
 		});
 		
@@ -167,5 +189,19 @@ private static Uri getOutputMediaFileUri() {
 	return Uri.fromFile(getOutputMediaFile());
 	
 }	
+
+public void onNoti() {
+	
+	Notification nf = new Notification(R.drawable.jackofclubs, "zzzz", System.currentTimeMillis());
+	
+	Intent it = new Intent(this, LoginActivity.class);
+	PendingIntent pit = PendingIntent.getActivity(this, 0, it, 0);
+	
+	nf.setLatestEventInfo(this, "subject", "content", pit);
+	
+	nm.notify(MESSAGE_ID, nf);
+}
+
+
 	
 }

@@ -25,29 +25,30 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.provider.ContactsContract.Contacts;
 
 import com.bblish.info;
 
 public class SetActivity extends Activity {
 	
-	ListView lv = null;
-	ArrayList<info> al = null;
+	ListView mListView = null;
+	ListViewAdapter mAdapter = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_set);
 		
-		setLayout();
+		mListView = (ListView)findViewById(R.id.mList);
 		
-		al = new ArrayList<info>();
+		mAdapter = new ListViewAdapter(this);
+		mListView.setAdapter(mAdapter);
 		
-		for (int i = 0; i < 10; i++) {
-			al.add(new info(i + " lv", getResources().getDrawable(R.drawable.ic_launcher)));
-		}
-
-		lv.setAdapter(new CAA(this, R.layout.lv_row, al));
+		mAdapter.addItem(getResources().getDrawable(R.drawable.jackofclubs), "title1");
+		mAdapter.addItem(getResources().getDrawable(R.drawable.jackofdiamonds), "title2");
+		mAdapter.addItem(getResources().getDrawable(R.drawable.jackofhearts), "title3");
+		mAdapter.addItem(getResources().getDrawable(R.drawable.jackofspades), "title4");
 	}
 	
 	
@@ -63,7 +64,6 @@ public class SetActivity extends Activity {
 		return managedQuery(Contacts.CONTENT_URI, proj, null, null, null);
 	}
 	
-	public void setLayout() {
-		lv = (ListView)findViewById(R.id.lv);
-	}
+	
+
 }
