@@ -56,6 +56,8 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        
+        <receiver android:name="MessageReceiver"></receiver>
     </application>
 
 </manifest>

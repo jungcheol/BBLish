@@ -36,6 +36,7 @@ public class FavoriteActivity extends Activity {
 	ImageView preview;
 	DatabaseHelper db;
 	Button notiBtn;
+	Button broadC;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,16 @@ public class FavoriteActivity extends Activity {
 			}
 		});
 		
+		broadC = (Button)findViewById(R.id.broadC);
+		broadC.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				onBroadC();
+			}
+		});		
 	}
 	
 	@Override
@@ -202,6 +213,12 @@ public void onNoti() {
 	nm.notify(MESSAGE_ID, nf);
 }
 
+public void onBroadC() {
+	Intent it = new Intent(this, MessageReceiver.class);
+	
+	sendBroadcast(it);
+
+}
 
 	
 }
