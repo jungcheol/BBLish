@@ -24,7 +24,8 @@ public class TabsActivity extends TabActivity implements OnTabChangeListener {
 		Intent HomeIntent = new Intent().setClass(this, HomeActivity.class);
 		Intent SearchIntent = new Intent(this, SearchActivity.class);
 		Intent FavoriteIntent = new Intent(this, FavoriteActivity.class);
-		Intent SetIntent = new Intent(this, SetActivity.class);
+//		Intent SetIntent = new Intent(this, SetActivity.class);
+		Intent DemoIntent = new Intent(this, DemoActivity.class);
 				
 		tabHost = getTabHost();		
 		tabHost.setOnTabChangedListener(this);
@@ -44,9 +45,13 @@ public class TabsActivity extends TabActivity implements OnTabChangeListener {
 		ListTabSpec.setContent(FavoriteIntent);
 		tabHost.addTab(ListTabSpec);
 		
-		TabSpec ProfileTabSpec = tabHost.newTabSpec("ProfileTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_04_indicator));
-		ProfileTabSpec.setContent(SetIntent);
-		tabHost.addTab(ProfileTabSpec);
+//		TabSpec ProfileTabSpec = tabHost.newTabSpec("ProfileTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_04_indicator));
+//		ProfileTabSpec.setContent(SetIntent);
+//		tabHost.addTab(ProfileTabSpec);
+		
+		TabSpec DemoTabSpec = tabHost.newTabSpec("DemoTabSpec").setIndicator("", getResources().getDrawable(R.drawable.tabmenu_04_indicator));
+		DemoTabSpec.setContent(DemoIntent);
+		tabHost.addTab(DemoTabSpec);
 				
 		for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
 			tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#1d202f"));

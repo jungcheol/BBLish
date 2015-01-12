@@ -61,16 +61,21 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
-        
+		<activity
+            android:name=".DemoActivity"
+            android:label="@string/title_activity_demo" >
+        </activity>
+                
         <receiver android:name="MessageReceiver"></receiver>
         <receiver android:name=".GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="com.bblish" />
             </intent-filter>
-        </receiver>
+        </receiver> 
         
-        <service android:name=".GcmIntentService"></service>
+        <service android:name=".GcmIntentService"></service> 
+        
     </application>
 
 </manifest>
