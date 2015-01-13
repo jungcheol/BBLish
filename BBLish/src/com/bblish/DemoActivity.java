@@ -72,12 +72,15 @@ public class DemoActivity extends Activity {
 
         // Check device for Play Services APK. If check succeeds, proceed with GCM registration.
         if (checkPlayServices()) {
+        	Log.d("", "[BBLishMainActivity] DemoActivity-checkPlayServices");
             gcm = GoogleCloudMessaging.getInstance(this);
             regid = getRegistrationId(context);
 
             if (regid.isEmpty()) {
                 registerInBackground();
             }
+            
+            Log.d("", "[BBLishMainActivity] DemoActivity-onCreate regid : " + regid);
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
         }
@@ -96,7 +99,10 @@ public class DemoActivity extends Activity {
      * the Google Play Store or enable it in the device's system settings.
      */
     private boolean checkPlayServices() {
+    	Log.d("", "[BBLishMainActivity] DemoActivity-checkPlayServices : 1111");
+    	
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        Log.d("", "[BBLishMainActivity] DemoActivity-checkPlayServices : 2222");
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this,
